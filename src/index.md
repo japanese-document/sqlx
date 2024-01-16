@@ -45,7 +45,7 @@ $ go get github.com/mattn/go-sqlite3
 * `sqlx.DB` - `sql.DB`に類似しており、データベースの表現です。
 * `sqlx.Tx` - `sql.Tx`に類似しており、トランザクションの表現です。
 * `sqlx.Stmt` - `sql.Stmt`に類似しており、準備されたステートメントの表現です。
-* `sqlx.NamedStmt` - [名前付きパラメータ](#namedParams)をサポートする準備されたステートメントの表現です。
+* `sqlx.NamedStmt` - [名前付きクエリ](#名前付きクエリ)をサポートする準備されたステートメントの表現です。
 
 データベース操作に関連した型はすべて、`database/sql`の同等物を[埋め込み(Embedding)](https://golang.org/doc/effective_go.html#embedding)しています。
 つまり、`sqlx.DB.Query`を呼び出すとき、`sql.DB.Query`と同じコードを呼び出しています。
