@@ -1,0 +1,177 @@
+@media (width <= 1200px) {
+  .index-menu, .header-list {
+    display: none;
+  }
+  .left-side, .right-side {
+    border: none;
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Meiryo,Hiragino Fixed,sans-serif;
+}
+
+body::-webkit-scrollbar-thumb {
+  border: 4px solid transparent;
+  background-clip: content-box;
+  background-color: #808080;
+  border-radius: 8px;
+  height: 64px;
+}
+
+body::-webkit-scrollbar {
+  width: 16px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+.left-side {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  height: max-content;
+  min-height: 100%;
+}
+
+.left-side:has(.index-menu) {
+  border-right: 1px solid var(--color-border-muted);
+}
+
+.right-side {
+  grid-column: 3 / 4;
+  grid-row: 1 / 3;
+}
+
+.right-side:has(.header-list) {
+  border-left: 1px solid var(--color-border-muted);
+}
+
+.main {
+  padding: 1.25rem;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+footer {
+  padding: 1.25rem;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+  grid-column: 2 / 3;
+  grid-row: 2/ 3;
+}
+
+a {
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* index-menu */
+
+.index-menu {
+  position: sticky;
+  top: 0px;
+  padding: 1.25rem;
+  width: max-content;
+  margin-left: auto;
+}
+
+.index-menu p {
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 0px;
+  margin-left: 17px;
+}
+
+.index-menu p:last-child {
+  margin-bottom: 4px;
+}
+
+.index-menu {
+  position: sticky;
+  top: 0px;
+  padding: 1.25rem;
+  width: max-content;
+  margin-left: auto;
+}
+
+:is(.index-menu, .header-list) a {
+  color: #000;
+}
+
+/* header-list */
+
+.header-list {
+  position: sticky;
+  top: 0px;
+  padding: 1.25rem;
+}
+
+.header-list p {
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 4px;
+}
+
+.header-list .h2 {
+  margin-left: 14px;
+}
+
+.header-list .h3 {
+  margin-left: 28px;
+}
+
+.header-list .h4 {
+  margin-left: 42px;
+}
+
+/* .markdown-body */
+
+.markdown-body img {
+  display: block;
+  margin: auto;
+}
+
+.markdown-body :is(h1, h2, h3, h4, h5, h6) .anchor {
+  float: initial;
+  color: initial;
+  line-height: unset;
+  visibility: hidden;
+}
+
+.markdown-body :is(h1, h2, h3, h4, h5, h6):hover .anchor {
+  visibility: visible;
+}
+
+/* MIT © GitHub */
+
+* {
+  --color-danger-fg: #cf222e;
+  --color-border-default: #d0d7de;
+  --color-border-muted: hsla(210,18%,87%,1);
+  --color-canvas-subtle: #f6f8fa;
+  --color-fg-default: #24292f;
+  --color-fg-muted: #57606a;
+  --color-neutral-muted: rgba(175,184,193,0.2);
+  --color-accent-emphasis: #0969da;
+  --color-accent-fg: #0969da;
+}
+
+code {
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
