@@ -61,7 +61,7 @@ $ go get github.com/mattn/go-sqlite3
 <li><code>sqlx.DB</code> - <code>sql.DB</code>に類似しており、データベースの表現です。</li>
 <li><code>sqlx.Tx</code> - <code>sql.Tx</code>に類似しており、トランザクションの表現です。</li>
 <li><code>sqlx.Stmt</code> - <code>sql.Stmt</code>に類似しており、準備されたステートメントの表現です。</li>
-<li><code>sqlx.NamedStmt</code> - <a class="Link" href="#namedParams">名前付きパラメータ</a>をサポートする準備されたステートメントの表現です。</li>
+<li><code>sqlx.NamedStmt</code> - <a class="Link" href="#名前付きクエリ">名前付きクエリ</a>をサポートする準備されたステートメントの表現です。</li>
 </ul>
 <p>データベース操作に関連した型はすべて、<code>database/sql</code>の同等物を<a class="Link" href="https://golang.org/doc/effective_go.html#embedding">埋め込み(Embedding)</a>しています。
 つまり、<code>sqlx.DB.Query</code>を呼び出すとき、<code>sql.DB.Query</code>と同じコードを呼び出しています。
@@ -184,8 +184,8 @@ for rows.Next() {
     err = rows.Scan(&amp;country, &amp;city, &amp;telcode)
 }
 </code></pre>
-<p><code>Rows</code>はクエリの結果を格納したリストというよりは、データベースカーソルのように扱うべきです。
-ドライバのバッファリング動作は異なる場合がありますが、<code>Next()</code>を使って反復処理することは、大きな結果セットのメモリ使用量を制限する良い方法です。
+<p><code>Rows</code>はクエリの結果を格納したリストというよりデータベースカーソルのように扱うべきです。
+ドライバのバッファリング動作は異なる場合がありますが、<code>Next()</code>を使って反復処理することは大きな結果セットのメモリ使用量を制限する良い方法です。
 なぜなら、一度に1行ずつしかスキャン(scan)するからです。
 <code>Scan()</code>は<a class="Link" href="https://golang.org/pkg/reflect">reflect</a>を使用して、sqlの列の戻り値の型を<code>string</code>、<code>[]byte</code>などのGoの型にマッピングします。
 全ての行の結果を反復処理しない場合は、接続をコネクションプールに戻すために<code>rows.Close()</code>を必ず呼び出してください。</p>
@@ -466,7 +466,7 @@ SQLは一般的にJSONのパースよりも予め定義された方法で実行�
 // ここでのerrはnilではありません。`place`のカラムに対応するフィールドがありません
 err = db.Get(&amp;p, "SELECT * FROM person, place LIMIT 1;")
 
-// これはエラーを返しません、`place`のカラムに対応するフィールドがなくても
+// `place`のカラムに対応するフィールドがなくても、これはエラーを返しません
 udb := db.Unsafe()
 err = udb.Get(&amp;p, "SELECT * FROM person, place LIMIT 1;")
 </code></pre>
