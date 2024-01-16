@@ -562,7 +562,7 @@ var p Person
 // ここでのerrはnilではありません。`place`のカラムに対応するフィールドがありません
 err = db.Get(&p, "SELECT * FROM person, place LIMIT 1;")
 
-// これはエラーを返しません、`place`のカラムに対応するフィールドがなくても
+// `place`のカラムに対応するフィールドがなくても、これはエラーを返しません
 udb := db.Unsafe()
 err = udb.Get(&p, "SELECT * FROM person, place LIMIT 1;")
 ```
